@@ -1,5 +1,4 @@
 import turtle
-import fractions
 import math
 
 
@@ -23,7 +22,7 @@ class Spirograph:
         self.l = l
 
         # Reduce r/R to simplest form to determine periodicity
-        gcdVal = fractions.gcd(self.r, self.R)
+        gcdVal = math.gcd(self.r, self.R)
         self.period = self.r//gcdVal  # Integer division
 
         # Ratio of radii r/R
@@ -56,4 +55,10 @@ class Spirograph:
             a = math.radians(i)
             x = R * ((1-k) * math.cos(a) + l*k*math.cos(a/k - a))
             y = R * ((1-k) * math.sin(a) + l*k*math.sin(a/k - a))
-        self.t.hideturtle()
+        # self.t.hideturtle()
+
+
+spiro = Spirograph(100, 100, (0.5, 0.5, 0.5), 100, 30, 0.8)
+spiro.restart()
+spiro.draw()
+turtle.mainloop()
