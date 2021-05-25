@@ -57,3 +57,23 @@ class Spirograph:
             y = R * ((1-k) * math.sin(a) + l*k*math.sin(a/k - a))
             self.t.setpos(self.xc + x, self.yc + y)
         self.t.hideturtle()
+
+    # Draw spirographs in steps
+    def update(self):
+
+        # Exit if drawing complete
+        if self.drawingComplete:
+            return
+
+        # Draw a step
+        R, k, l = self.R, self.k, self.l
+        self.a += self.step
+        a = math.radians(self.a)
+        x = R * ((1-k) * math.cos(a) + l*k*math.cos(a/k - a))
+        y = R * ((1-k) * math.sin(a) + l*k*math.sin(a/k - a))
+        self.t.setpos(self.xc + x, self.yc + y)
+
+        # Check if drawing is complete and set flag
+        if self.a >= 360*self.period:
+            self.drawingComplete = True
+            self.t.hideturtle()
