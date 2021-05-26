@@ -45,7 +45,8 @@ class Spirograph:
         self.t.showturtle()
 
         # Go to first point
-        self.t.up()
+        if not self.t.up():
+            self.t.up()
         R, k, l = self.R, self.k, self.l
         a = 0.0
         x = R * ((1-k) * math.cos(a) + l*k*math.cos(a/k - a))
@@ -124,6 +125,7 @@ class SpiroAnimator:
     # Restart animator
     def restart(self):
         for spiro in self.spiros:
+            spiro.t.up()
             spiro.clear()
 
             # Generate new spirographs
@@ -174,9 +176,8 @@ def save_drawing():
 
     turtle.showturtle()
 
+
 # main() function
-
-
 def main():
     print('Generating spirograph...')
 
